@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alice:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >
+
+  <title>Flask Template</title>
+
+
+  </head>
+
+  <body>
+
+    <main>
+      <section class="section" style="background-image: url('../static/wallpaper-blue-3.png');background-size: contain;">
+        <div class="parent">  
+          <div class="reveal">
+            <h1 class="reveal__heading">
+              <div class="image-box reveal__heading-left" >
+                <img  src="../static/marie2.jpeg" alt="">
+              </div>
+              <div class="overlay-text">Marie</div>
+              <div class="overlay-text2">Vinodh</div>
+              <div class="image-box reveal__heading-right">
+                <img src="../static/annan2.jpeg" alt="">
+              </div>
+            </h1>
+            <h2 class="reveal__subheading" style="color:black">
+              <div class="button-row">
+              <button class="btn">rsvp</button>
+              <button class="btn">agenda</button>
+              <button class="btn">messages</button>
+              </div>
+            </h2>
+            <div class="reveal__media">
+              <img class="reveal__media-img" src="../static/std3.png" alt="">
+              
+            </div>
+            
+          </div>
+        </div>
+      </section>
+      <section class="background-class">
+        <h1 style="color:#a4683d;">rsvp</h1>
+        <p style="padding:40px;text-align:center;font-family:'Ephesis';font-size:30px;color:#564238">We would love to celebrate with you! Please let us know if you will be attending our wedding by filling out the form below.</p>
+        <form style="font-size:20px;color:#564238" id="rsvp-form2" method="post">
+          <label>Name: </label><input type="text" name="name2" id="name2" size="40"  placeholder="Name">
+          <br>
+          <br>
+          <label>Number of Attendees: </label><input type="text" id="nop" size="20" placeholder="Number of Attendees">
+          <br>
+          <br>
+          <label>Email Address: </label><input type="text" name="email2" id="email2" size="20" placeholder="Email Address">
+          <br>
+          <br>
+          <label>Arriving From: </label><input name="country2" type="text" id="nop" size="20" placeholder="Arriving From">
+          <br>
+          <br>
+          <label>I will be attending the:</label>
+          <br>
+          <input type="checkbox" id="malaysianceremony" name="malaysianceremony" value="Malaysian Ceremony">
+          <label for="malaysianceremony"> Malaysian Ceremony</label><br>
+          <input type="checkbox" id="canadianceremony" name="canadianceremony" value="Canadian Ceremony">
+          <label for="canadianceremony">Canadian Ceremony</label><br>
+          <input class="btn" type="submit" value="Submit">
+          <p id="result"><p>
+        </form>
+      </section>
+      <section class="background-class">
+      
+      
+        <div class="container">
+          <div>
+          <h1 style="color:#a4683d;">message</h1>
+          </div>
+          <div class="card-container">
+            <div class="faq faq-front fly-in active">
+              <div class="sub-faq">
+                <h2 style="color:#564238;font-size:30px;font-family:'Ephesis'">Send us a message!</h2>
+                <img class="stamp-img" src="../static/canadian_stamp.png" alt="">
+              </div>
+              
+              <div class="form-class">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      <div class="alert alert-{{ category }}">
+                        {{ message }}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+                <form id="rsvp-form" method="post">
+                  <div id="name-container"><label>Name: </label><input type="text" name="name-message" id="name-message" size="40"  placeholder="Name"></div>
+                  <input type="hidden" name="scrollPosition" id="scrollPosition" value="0">
+                  <br>
+                  <br>
+                  <label>Email Address: </label><input type="text" id="nop" size="20" placeholder="Email Address">
+                  <br>
+                  <br>
+                  <label>Message: </label><input type="text" id="nop" size="20" placeholder="Number of Attendees">
+                  <br>
+                  <br>
+                  
+                  <input class="btn" type="submit" value="Submit">
+                  
+                </form>
+
+              </div>
+            </div>
+            <div class="faq fly-in faq-back">
+            </div>
+            <div class="faq fly-in faq-back-back">
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="background-class">
+        <h1 style="color:#a4683d">agenda</h1>
+        <h2 style="color:#3c2d69;font-family:'Ephesis'">Malaysian Ceremony</h2>
+        <div class="wrapper">
+          <div style="justify-items: center;">Preparatory Prayer</div>
+          <div style="justify-self: left;";><img class="wrapper-img" src="../static/prayer.png" alt=""></div>
+          <div style="justify-self: right;";><img class="wrapper-img" src="../static/henna2.png" alt=""></div>
+          <div>Henna Night</div>
+          <div style="justify-items: center;">Wedding</div>
+          <div style="justify-self: left;";><img class="wrapper-img" src="../static/wedding.png" alt=""></div>
+          <div style="justify-self: right;";><img class="wrapper-img" src="../static/maruveedu.png" alt=""></div>
+          <div>Maruveedu</div>
+          
+        </div>
+        </section>
+        <section class="background-class">
+          <h1 style="color:#a4683d">agenda</h1>
+          <h2 style="color:#3c2d69;font-family:'Ephesis'">Canadian Ceremony</h2>
+          <div class="location">
+            <p>Date: Saturday, June 27th, 2026</p>
+<p>Start time: 3:30PM</p>
+<p>Location: Hilltop Picnic Shelter, Waterloo Park</p>
+          </div>
+          </section>
+        
+    </main>
+
+    {% include 'footer.html' %}
+
+
+    <script>
+      let submittedName = null;
+      document.getElementById('rsvp-form2').addEventListener('submit', async function(e) {
+          e.preventDefault();  // Prevent page refresh
+          const name = document.getElementById('name2').value;
+          console.log(`Submitting form with name: ${name}`);
+          // Collect form data
+          const formData = new FormData(this);
+          const data = {};
+          formData.forEach((value, key) => {
+              data[key] = value;
+          });
+      
+          // Send AJAX request to Flask
+          const response = await fetch('/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(data)  // Convert to JSON
+          });
+      
+          // Optional: show a message
+          document.getElementById('result').innerText = "Form submitted successfully!";
+          submittedName = name;
+          console.log(`Form submitted with name: ${submittedName}`);
+          if(submittedName){
+            const nameDiv = document.getElementById('name-container');
+            
+            nameDiv.innerHTML = `<input type="hidden" name="name-message" value="${submittedName}">
+        <div>Name already submitted: ${submittedName}</div>`;
+            console.log(`Updating name-message input with submitted name: ${submittedName}`);
+        }
+        });
+        </script>    
+    <script src="{{ url_for('static', filename='scripts.js') }}" type="module"></script>
+      
+  </body>
+
+</html>
