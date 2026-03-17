@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Alice:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url("https://fonts.googleapis.com/css2?family=Ephesis&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quintessential&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@200;300;400;500;600;700&display=swap");
+@font-face {
+  font-family: 'Beautifully Delicious Script';
+  src: url('fonts/BDScript-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 body {
     background-color: #131313;
     color: #ffffff;
@@ -70,10 +78,6 @@ section {
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
 }
-@function pxToRem($pixel) {
-    @return $pixel / 16 + rem;
-  }
-  
 :root {
     --color-black: hsla(0, 0%, 12%, 100%);
     --color-white: hsla(0, 0%, 100%, 100%);
@@ -93,11 +97,11 @@ main {
     --sub-scale: 0.25;
     --sub-opacity: 0;
   
-    height: 100dvh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     width: 100%;
 }
@@ -106,29 +110,38 @@ main {
     color: var(--color-black);
     font-size: 3vw;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 900px;
+    width: 90%;
+    position: relative;
 }
 .button-row {
-    display: flex;            /* Turns on the row logic */
-    flex-direction: row;      /* Places them side-by-side */
-    justify-content: center;  /* Centers them horizontally */
-    gap: 15px;                /* Adds a gap between buttons without using margins */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
     
-    /* Positioning it over your content */
     position: absolute;
-    bottom: 20px;             /* Distance from bottom */
+    bottom: 5px;
     left: 50%;
     transform: translateX(-50%) scale(var(--sub-scale, 0.5));
     
-    width: auto;              /* Only takes up as much space as the buttons need */
+    width: max-content;
+    max-width: 90vw;
     opacity: var(--sub-opacity, 0);
     will-change: transform, opacity;
     z-index: 10;
   }
   
-  /* Optional: Ensure buttons don't stretch weirdly */
   .btn {
-    padding: 10px 20px;
-    white-space: nowrap;      /* Prevents text from wrapping inside the button */
+    padding: 8px 16px;
+    white-space: nowrap;
+    font-size: clamp(12px, 3vw, 16px);
   }
 .reveal__subheading {
     position: absolute;
@@ -149,6 +162,7 @@ main {
 .reveal__heading-left,
 .reveal__heading-right {
     display: inline-block;
+    position: relative;
 }
 .background-class{
   background-image: url('../static/wallpaper-blue-3.png');
@@ -163,21 +177,22 @@ main {
 }
   
   .reveal__media {
-    position: absolute;
-    /* left: 0; */
-    top: 2;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 60%;
-    height: 80%;
+    height: 100dvh;
     z-index: -1;
-    /* transform: scale(var(--progress)); */
-    opacity: var(--progress,0) ;
+    opacity: var(--progress,0);
+    pointer-events: none;
   }
   
   .reveal__media-img {
-    position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center center;
   }
   
   .content {
@@ -189,8 +204,12 @@ main {
   }
 
 .image-box img {
-    width: 600px;           /* smaller */
-    height: 400px;
+    width: 80vw;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: top;
   }
   .cookie-card {
     max-width: 320px;
@@ -289,35 +308,27 @@ main {
   
   .overlay-text {
     position: absolute;
-    top: 10%;
-    right: 3%;
-    transform: translate(-50%, -50%);
+    top: 5%;
+    right: 2%;
     opacity: calc(1 - var(--progress, 0));
     color: #ffffff;
-    /* background: black; */
-    font-family:"Ephesis", cursive;
+    font-family:"Beautifully Delicious Script", cursive;
     padding: 10px 20px;
-    border-radius: 20px;
-    font-size:  90px;;
-    font-weight: bold;
-    z-index: 10; /* Ensures it sits on top of the divs */
-    /* box-shadow: 0 4px 6px rgba(0,0,0,0.1); */
+    font-size: clamp(40px, 8vw, 90px);
+    font-weight: normal;
+    z-index: 10;
   }
   .overlay-text2 {
     position: absolute;
-    bottom: 10%;
-    left: 30%;
-    font-family:"Ephesis", cursive;
-    transform: translate(-50%, -50%);
+    bottom: 2%;
+    left: 2%;
+    font-family:"Beautifully Delicious Script", cursive;
     opacity: calc(1 - var(--progress, 0));
     color: #006078;
-    /* background: black; */
     padding: 10px 20px;
-    border-radius: 20px;
-    font-size:  90px;;
-    font-weight: bold;
-    z-index: 10; /* Ensures it sits on top of the divs */
-    /* box-shadow: 0 4px 6px rgba(0,0,0,0.1); */
+    font-size: clamp(40px, 8vw, 90px);
+    font-weight: normal;
+    z-index: 10;
   }
   .btn {
     padding: 10px 20px;
@@ -454,6 +465,10 @@ main {
     color: #564238;
     padding:20px;
     flex:3;
+    font-size: 15px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    letter-spacing: 0.1em;
+    font-weight: 200;
 }
 .stamp-img{
     margin:2em;
@@ -464,12 +479,72 @@ main {
     width:30%;
 }
 .location{
-    margin: 2em 2em 2em;
+    margin: 0.5em 2em;
     padding:10px;
     color:#564238;
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 18px;
+    font-weight: 200;
+    letter-spacing: 0.1em;
+    gap: 0;
+}
+.detail-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 0;
+    position: relative;
+}
+.detail-row::after {
+    content: '';
+    position: absolute;
+    left: 140px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #a4683d;
+}
+.detail-label {
+    flex: 0 0 120px;
+    text-align: right;
+    padding-right: 20px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    color: #a4683d;
+}
+.detail-value {
+    padding-left: 20px;
+    text-align: left;
+    color: #564238;
+}
+.detail-value a {
+    color: #3c2d69;
+    text-decoration: underline;
+}
+.detail-value a:hover {
+    color: #a4683d;
+}
+.form-input {
+    border: none;
+    border-bottom: 1px solid #a4683d;
+    background: transparent;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #564238;
+    padding: 4px 0;
+    outline: none;
+    width: 100%;
+    letter-spacing: 0.05em;
+}
+.form-input::placeholder {
+    color: #a4683d80;
 }
 .faq-title{
     margin-left:2em;
@@ -537,6 +612,29 @@ i{
     width:90px;
   }
   @media (min-aspect-ratio: 1/1) {
+    .image-box img {
+      width: 35vw;
+      max-width: 500px;
+    }
+    .overlay-text {
+      top: 5%;
+      right: 2%;
+    }
+    .overlay-text2 {
+      bottom: 2%;
+      left: 2%;
+    }
+    .reveal__media {
+      width: 50%;
+      height: 70%;
+    }
+    .button-row {
+      gap: 25px;
+    }
+    .btn {
+      padding: 12px 28px;
+      font-size: 1rem;
+    }
     .faq{
       transform:rotate(30deg);
     }
